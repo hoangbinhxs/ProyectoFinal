@@ -7,6 +7,10 @@ public class Sala {
 	public Sala() {
 		super();
 	}
+	public Sala(int id) {
+		super();
+		this.id = id;
+	}
 	public Sala(int filas, int asientos) {
 		super();
 		this.filas = filas;

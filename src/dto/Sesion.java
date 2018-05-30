@@ -13,6 +13,10 @@ public class Sesion {
 	public Sesion() {
 		super();
 	}
+	public Sesion(int id) {
+		super();
+		this.id = id;
+	}
 	public Sesion(LocalDateTime fechaHora, String titulo, int idSala, List<Entrada> entradas) {
 		super();
 		this.fechaHora = fechaHora;
