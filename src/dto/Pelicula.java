@@ -11,6 +11,12 @@ public class Pelicula {
 	public Pelicula() {
 		super();
 	}
+	
+	public Pelicula(String titulo) {
+		super();
+		this.titulo = titulo;
+	}
+
 	public Pelicula(String titulo, LocalDate fechaEstreno, LocalDate fechaFE, String sinopsis, int duracion) {
 		super();
 		this.titulo = titulo;

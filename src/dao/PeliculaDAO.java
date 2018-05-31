@@ -45,11 +45,11 @@ public class PeliculaDAO {
 	}
 	public boolean anadirPelicula(Pelicula p) {
 		try {
-			PreparedStatement statement=conexion.prepareStatement("insert into pelicula values (?,?,?,?,?)");
+			PreparedStatement statement=conexion.prepareStatement("insert into peliculas values (?,?,?,?,?)");
 			statement.setString(1,p.getTitulo());
 			statement.setDate(2,Date.valueOf(p.getFechaEstreno()));
-			statement.setDate(3,Date.valueOf(p.getFechaFE()));
-			statement.setString(4,p.getSinopsis());
+			statement.setString(3,p.getSinopsis());
+			statement.setDate(4,Date.valueOf(p.getFechaFE()));
 			statement.setInt(5,p.getDuracion());
 			int anadido=statement.executeUpdate();
 			if(anadido>0)
@@ -66,14 +66,16 @@ public class PeliculaDAO {
 			PreparedStatement statement=conexion.prepareStatement("delete from peliculas where titulo=?");
 			statement.setString(1,titulo);
 			int borrado=statement.executeUpdate();
-			if(borrado>0)
+			if(borrado>0) {
+				System.out.println("Se ha eliminado la pelicula");
 				return true;
-			else
+			}
+			else {
+				System.out.println("No se ha eliminado la pelicula");
 				return false;
-		
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No se ha eliminado la pelicula");
 			return false;
 		}
 		
@@ -84,9 +86,8 @@ public class PeliculaDAO {
 			PreparedStatement statement=conexion.prepareStatement("select * from peliculas where titulo=?");
 			statement.setString(1, titulo);
 			ResultSet resultado=statement.executeQuery();
-			resultado.next();
-			String tituloC=resultado.getString("titulo");
-			if(tituloC!=null)
+			
+			if(resultado.next())
 				return true;
 			else 
 				return false;
