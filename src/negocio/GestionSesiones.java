@@ -3,7 +3,6 @@ package negocio;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import dao.EntradaDAO;
 import dao.SesionDAO;
 import dto.Entrada;
 import dto.Sala;
@@ -11,10 +10,9 @@ import dto.Sesion;
 
 public class GestionSesiones {
 	SesionDAO sesionDao;
-	EntradaDAO entradaDao;
 	public GestionSesiones() {
 		sesionDao=new SesionDAO();
-		entradaDao=new EntradaDAO();
+	
 	}
 	public boolean eliminarSesion(int id) {
 		return sesionDao.eliminarSesion(id);
@@ -37,10 +35,4 @@ public class GestionSesiones {
 	public boolean comprobarSalaFechaHora(Sala sala, LocalDateTime fechaHora) {
 		return sesionDao.comprobarSalaFechaHora(sala, fechaHora);
 	}
-	public void guardarEntrada(List<Entrada> entradas, Sesion sesion) {
-		entradaDao.guardarEntrada(entradas, sesion);
 	}
-	public boolean comprobarEntrada(Entrada entrada, Sesion sesion) {
-		return entradaDao.comprobarEntrada(entrada, sesion);
-	}
-}
