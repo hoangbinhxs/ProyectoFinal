@@ -27,9 +27,24 @@ public class Pelicula {
 	}
 	@Override
 	public String toString() {
-		return "Pelicula [titulo=" + titulo + ", fechaEstreno=" + fechaEstreno + ", fechaFE=" + fechaFE + ", sinopsis="
-				+ sinopsis + ", duracion=" + duracion + "]";
+		String cadena= "--------------------------------\n";
+		cadena+=textoFormateado("|Titulo: "+titulo+"|",30);
+		cadena+=textoFormateado("|Fecha de estreno: "+fechaEstreno+"|",30);
+		cadena+=textoFormateado("|Fin de emision: "+fechaFE+"|",30);
+		cadena+=textoFormateado("|Sinopsis: "+ sinopsis+"|",30);
+		cadena+=textoFormateado("|Duracion: "+duracion+"|", 30);
+		cadena+="--------------------------------";
+		return cadena;		
 	}
+	public String textoFormateado(String texto, int longitud) {
+		String cadena= "|"+texto;
+		for(int i=0;i<longitud-texto.length();i++) {
+			cadena+=" ";
+		}
+		cadena+="|\n";
+		return cadena;
+	}
+
 	public String getTitulo() {
 		return titulo;
 	}

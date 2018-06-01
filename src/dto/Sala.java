@@ -26,8 +26,22 @@ public class Sala {
 	}
 	@Override
 	public String toString() {
-		return "Sala [filas=" + filas + ", asientos=" + asientos + ", id=" + id + "]";
+		String cadena= "--------------------------------\n";
+		cadena+=textoFormateado("|Id de Sesion: "+id+"|",30);
+		cadena+=textoFormateado("|Fila: "+filas+"|",30);
+		cadena+=textoFormateado("|Asiento: "+asientos+"|",30);
+		cadena+="--------------------------------";
+		return cadena;		
 	}
+	public String textoFormateado(String texto, int longitud) {
+		String cadena= "|"+texto;
+		for(int i=0;i<longitud-texto.length();i++) {
+			cadena+=" ";
+		}
+		cadena+="|\n";
+		return cadena;
+	}
+
 	public int getFilas() {
 		return filas;
 	}

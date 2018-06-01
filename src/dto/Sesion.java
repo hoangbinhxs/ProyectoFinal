@@ -1,6 +1,7 @@
 package dto;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 
 public class Sesion {
@@ -9,6 +10,7 @@ public class Sesion {
 	private Pelicula pelicula;
 	private Sala sala;
 	private List<Entrada> entradas;
+
 	
 	public Sesion() {
 		super();
@@ -39,10 +41,32 @@ public class Sesion {
 	}
 
 
+	public Sesion(Sala s, Pelicula p, LocalDateTime hora, int duracion) {
+		this.sala=s;
+		this.pelicula=p;
+		this.fechaHora=hora;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Sesion [id=" + id + ", fechaHora=" + fechaHora + ", pelicula=" + pelicula + ", sala=" + sala
-				+ ", entradas=" + entradas + "]";
+		String cadena= "--------------------------------\n";
+		cadena+=textoFormateado("|Id de Sesion: "+id+"|",30);
+		cadena+=textoFormateado("|Fecha y Hora: "+fechaHora+"|",30);
+		cadena+=textoFormateado("|Pelicula emitida: "+pelicula+"|",30);
+		cadena+=textoFormateado("|Sala: "+ sala+"|",30);
+		cadena+=textoFormateado("|Entrada: "+entradas+"|", 30);
+		cadena+="--------------------------------";
+		return cadena;		
+	}
+	public String textoFormateado(String texto, int longitud) {
+		String cadena= "|"+texto;
+		for(int i=0;i<longitud-texto.length();i++) {
+			cadena+=" ";
+		}
+		cadena+="|\n";
+		return cadena;
 	}
 
 
