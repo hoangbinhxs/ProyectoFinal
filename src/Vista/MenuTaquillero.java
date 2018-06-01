@@ -1,6 +1,19 @@
 package Vista;
 
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import Vista.utilidades.Escaner;
+import dto.Entrada;
+import dto.Pelicula;
+import dto.Sala;
 import dto.Sesion;
 import negocio.GestionEntradas;
 import negocio.GestionPeliculas;
@@ -11,6 +24,8 @@ public class MenuTaquillero {
 	GestionPeliculas gestionPelicula;
 	GestionSesiones gestionSesion;
 	Escaner escaner;
+	Connection conexion;
+	
 	public MenuTaquillero() {
 		gestionEntrada=new GestionEntradas();
 		gestionPelicula=new GestionPeliculas();
@@ -79,5 +94,50 @@ public class MenuTaquillero {
 			}
 			System.out.println("");
 			}
+	}
+	public void buscarSesionesProximas() 
+	{
+		mostrarTodasPeliculas();
+		System.out.println("Introduce un titulo ");
+		String titulo=escaner.leerLinea();
+		gestionSesion.recuperarSesionPorTitulo(titulo);
+		
+	}
+	public void mostrarTodasPeliculas()
+	{
+		List<Pelicula> listaPeliculas= gestionPelicula.recuperarTodasPeliculas();
+		for(Pelicula pelicula : listaPeliculas)
+			System.out.println(pelicula);
+		
+	}
+	public void mostrarSesionPorTitulo(String titulo)
+	{
+		gestionSesion.recuperarSesionPorTitulo(titulo);
+	}
+	public void pedirEntrada(Sesion sesion)
+	{
+		System.out.println("¿Cuántas entradas quieres?: ");
+		int numero=escaner.LeerEntero();
+		for(int i=0; i<numero; i++)
+		{
+			System.out.println("¿Qué fila desea?: ");
+			int fila = escaner.LeerEntero();
+			System.out.println("¿Qué asiento desea?: ");
+			int asiento=escaner.LeerEntero();
+			Entrada e = new Entrada(fila,asiento);
+			gestionEntrada.comprobarEntrada(e, sesion);
+			imprimirEntrada();
+		}
+		
+	}
+	public String imprimirEntrada()
+	{
+		Entrada e=new Entrada();
+		Pelicula p=new Pelicula();
+		Sesion s=new Sesion();
+		Sala sa = new Sala();
+		
+		
+		return "-------------------\n|"+e.getIdTicket()+"\n|"+e.getNumeroFila()+"\n|"+e.getNumeroAsiento()+"\n|"+p.getTitulo()+"\n|"+s.getFechaHora()+"\n|"+sa.getId()+"\n----------------------------";
 	}
 }

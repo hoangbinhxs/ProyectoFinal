@@ -1,13 +1,12 @@
 package Vista;
 
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import Vista.utilidades.Escaner;
 import dto.Pelicula;
 import dto.Sala;
+import dto.Sesion;
 import negocio.GestionPeliculas;
 import negocio.GestionSesiones;
 
@@ -53,13 +52,44 @@ public class MenuAdmistrador {
 		}
 	}
 	public void añadirSesion() {
+		System.out.println("***************************************************");
+		System.out.println("Introduzca el titulo de la pelicula");
+		String titulo=escaner.leerLinea();
+		Pelicula p=new Pelicula(titulo);
 		
+		System.out.println("Introduzca la sala");
+		int sala=escaner.LeerEntero();
+		Sala s=new Sala(sala);
+		
+		System.out.println("Introduce una hora");
+		LocalDateTime hora=LocalDateTime.parse(escaner.leerLinea());
+		
+		System.out.println("Introduzca la duracion de la pelicula");
+		int duracion=escaner.LeerEntero();
+
+		Sesion se = new Sesion(s, p, hora, duracion);
+		gestionSesiones.anadirSesion(se);
+		System.out.println("\n Se ha insertado correctamente la pelicula \n");
+		System.out.println("**************************************************");
+	
 	}
 	public void eliminarSesion() {
+		System.out.println("***************************************************");
+		System.out.println("Introduzca la sesion que desea eliminar");
+		int idSesionEliminar= escaner.LeerEntero();
+		boolean eliminado=gestionSesiones.eliminarSesion(idSesionEliminar);
+		if(eliminado)
+			System.out.println("\nEliminado Correctamente\n");
+		else
+			System.out.println("\n No existe esa sesion\n");
+		System.out.println("**************************************************");
 		
 	}
 	public void visualizarSesiones() {
-		
+		List<Sesion> listaSesiones = gestionSesiones.recuperarTodasSesiones();
+		for (Sesion s : listaSesiones) {
+			System.out.println(s);
+		}
 	}
 	public void mostraMenu() {
 		System.out.println("******************************************\n");
@@ -90,7 +120,7 @@ public class MenuAdmistrador {
 				visualizarSesiones();
 				break;
 			case 7:
-				/*exit();*/
+				salir=true;
 			}
 		}
 	}
@@ -103,17 +133,21 @@ public class MenuAdmistrador {
 		System.out.println("6. Ver sesion");
 		System.out.println("7. Exit");
 	
-	}/*
+	}
 	public static void  main(String args[]) {
-		
+		MenuAdmistrador ma=new MenuAdmistrador();
+		ma.mostraMenu();
 	}
 	public boolean comprobarPelicula(String titulo) {
-		
+		if(gestionPeli.comprobarPelicula(titulo))
+			return true;
+		else
+			return false;
 	}
 	public boolean comprobarSalaHoraFecha(Sala sala, LocalDateTime FechaHora) {
-		
+		if(gestionSesiones.comprobarSalaFechaHora(sala, FechaHora)) 
+			return true;
+		else 
+			return false;
 	}
-	public void exit() {
-		
-	}*/
 }
