@@ -27,13 +27,13 @@ public class Pelicula {
 	}
 	@Override
 	public String toString() {
-		String cadena= "--------------------------------\n";
-		cadena+=textoFormateado("|Titulo: "+titulo+"|",30);
-		cadena+=textoFormateado("|Fecha de estreno: "+fechaEstreno+"|",30);
-		cadena+=textoFormateado("|Fin de emision: "+fechaFE+"|",30);
-		cadena+=textoFormateado("|Sinopsis: "+ sinopsis+"|",30);
-		cadena+=textoFormateado("|Duracion: "+duracion+"|", 30);
-		cadena+="--------------------------------";
+		String cadena= "------------------------------------------\n";
+		cadena+=textoFormateado("Titulo: "+titulo,40);
+		cadena+=textoFormateado("Fecha de estreno: "+fechaEstreno,40);
+		cadena+=textoFormateado("Fin de emision: "+fechaFE,40);
+		cadena+=textoFormateado("Sinopsis: "+ sinopsis,40);
+		cadena+=textoFormateado("Duracion: "+duracion+"minutos",40);
+		cadena+="------------------------------------------";
 		return cadena;		
 	}
 	public String textoFormateado(String texto, int longitud) {

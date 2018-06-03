@@ -10,7 +10,7 @@ create table peliculas(
     titulo varchar(80),
     FechaEstreno date ,
     sinopsis text,
-    fechaFin date,
+    fechaFE date,
     duracion int(3),
     constraint pk_peliculas primary key (titulo)
 );
@@ -24,10 +24,10 @@ create table sesiones(
     constraint fk_sesiones_peliculas_titulo foreign key (titulo) references peliculas(titulo)
     );
 create table entradas(
-idticket int(5) primary key auto_increment,
     numeroFila int(2),
     numeroAsiento int(3),
     idSesion int(5),
+    constraint pk_entradas primary key(numeroFila,numeroAsiento,idSesion),
     constraint fk_entradas_sesiones foreign key (idSesion) references sesiones (id)
 );
 insert into salas values (null,10, 14);
@@ -47,14 +47,14 @@ insert into peliculas values("Moulin Rouge",'2001-10-11', 'Pues un sito con muje
 insert into peliculas values("Forrest Gump",'1994-09-23', 'Pues esto es un tipo que nos cuenta su puta vida que es más larga que un día sin pan y eso, que va y tiene un vastago y lo cuida y corre y hace cosas', '2019-01-01', 142);
 
 insert into sesiones values(null,'2018-06-24 16:00:00', "Interestelar",1);
-insert into sesiones values(null,'2018-06-25 16:30:00', "Interestelar",1);
-insert into sesiones values(null,'2018-06-26 17:00:00', "Interestelar",1);
+insert into sesiones values(null,'2018-06-25 16:30:00', "Interestelar",2);
+insert into sesiones values(null,'2018-06-26 17:00:00', "Interestelar",4);
 insert into sesiones values(null,'2018-06-27 17:30:00', "Interestelar",1);
 insert into sesiones values(null,'2018-06-28 19:00:00', "Interestelar",1);
-insert into sesiones values(null,'2018-06-29 19:30:00', "Interestelar",1);
-insert into sesiones values(null,'2018-06-23 20:00:00', "Interestelar",1);
+insert into sesiones values(null,'2018-06-29 19:30:00', "Interestelar",3);
+insert into sesiones values(null,'2018-06-23 20:00:00', "Interestelar",);
 insert into sesiones values(null,'2018-06-22 20:30:00', "Interestelar",1);
-insert into sesiones values(null,'2018-06-21 21:30:00', "Interestelar",1);
+insert into sesiones values(null,'2018-06-21 21:30:00', "Interestelar",4);
 insert into sesiones values(null,'2018-06-20 18:00:00', "Interestelar",1);
 
 
@@ -157,33 +157,33 @@ insert into sesiones values(null,'2018-06-28 16:00:00', "La vida de Bryan",4);
 insert into sesiones values(null,'2018-06-29 18:30:00', "La vida de Bryan",1);
 insert into sesiones values(null,'2018-06-23 20:00:00', "La vida de Bryan",1);
                           
-insert into entradas values(null,3,3,1);
-insert into entradas values(null,4,4,1);
-insert into entradas values(null,1,5,1);
-insert into entradas values(null,2,6,1);
-insert into entradas values(null,3,2,1);
+insert into entradas values(3,3,1);
+insert into entradas values(4,4,1);
+insert into entradas values(1,5,1);
+insert into entradas values(2,6,1);
+insert into entradas values(3,2,1);
 
-insert into entradas values(null,3,3,2);
-insert into entradas values(null,1,4,2);
-insert into entradas values(null,3,5,2);
-insert into entradas values(null,2,6,2);
-insert into entradas values(null,1,2,2);
+insert into entradas values(3,3,2);
+insert into entradas values(1,4,2);
+insert into entradas values(3,5,2);
+insert into entradas values(2,6,2);
+insert into entradas values(1,2,2);
 
-insert into entradas values(null,3,3,2);
-insert into entradas values(null,1,4,2);
-insert into entradas values(null,3,5,2);
-insert into entradas values(null,2,6,2);
-insert into entradas values(null,1,2,2);
+insert into entradas values(3,3,2);
+insert into entradas values(1,4,2);
+insert into entradas values(3,5,2);
+insert into entradas values(2,6,2);
+insert into entradas values(1,2,2);
 
-insert into entradas values(null,3,3,3);
-insert into entradas values(null,1,4,3);
-insert into entradas values(null,3,5,3);
-insert into entradas values(null,2,6,3);
-insert into entradas values(null,1,2,3);
+insert into entradas values(3,3,3);
+insert into entradas values(1,4,3);
+insert into entradas values(3,5,3);
+insert into entradas values(2,6,3);
+insert into entradas values(1,2,3);
 
-insert into entradas values(null,3,3,4);
-insert into entradas values(null,1,4,4);
-insert into entradas values(null,3,5,4);
-insert into entradas values(null,2,6,4);
-insert into entradas values(null,1,2,4);
+insert into entradas values(3,3,4);
+insert into entradas values(1,4,4);
+insert into entradas values(3,5,4);
+insert into entradas values(2,6,4);
+insert into entradas values(1,2,4);
 

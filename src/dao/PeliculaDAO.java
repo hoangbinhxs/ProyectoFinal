@@ -67,15 +67,17 @@ public class PeliculaDAO {
 			statement.setString(1,titulo);
 			int borrado=statement.executeUpdate();
 			if(borrado>0) {
-				System.out.println("Se ha eliminado la pelicula");
+				
 				return true;
 			}
 			else {
-				System.out.println("No se ha eliminado la pelicula");
+				
 				return false;
 			}
 		} catch (SQLException e) {
-			System.out.println("No se ha eliminado la pelicula");
+			System.out.println("**************************************************************");
+			System.out.println("*  No se ha eliminado la pelicula,No esta en el Cartelero    *");
+			System.out.println("**************************************************************");
 			return false;
 		}
 		
@@ -95,6 +97,15 @@ public class PeliculaDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
+		}
+	}
+	public void cerrar() {
+		try {
+			conexion.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("No se puede cerrar la conexion");
 		}
 	}
 }

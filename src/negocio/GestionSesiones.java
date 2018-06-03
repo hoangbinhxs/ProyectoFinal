@@ -33,6 +33,10 @@ public class GestionSesiones {
 		return sesionDao.recuperarEntradas(idSesion);
 	}
 	public boolean comprobarSalaFechaHora(Sala sala, LocalDateTime fechaHora) {
-		return sesionDao.comprobarSalaFechaHora(sala, fechaHora);
+		return sesionDao.comprobarSalaFechaHoraDisponible(sala, fechaHora);
 	}
+	public void cerrar() {
+		sesionDao.cerrar();
+	}
+	
 	}

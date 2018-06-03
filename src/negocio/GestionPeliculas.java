@@ -22,8 +22,11 @@ public class GestionPeliculas {
 		return peliculaDao.eliminarPelicula(titulo);
 	}
 
+	
 	public boolean comprobarPelicula(String titulo) {
 		return peliculaDao.comprobarPelicula(titulo);
 	}
-
+	public void cerrar() {
+		peliculaDao.cerrar();
+	}
 }

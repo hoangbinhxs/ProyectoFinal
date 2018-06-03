@@ -1,7 +1,7 @@
 package dto;
 
 public class Entrada {
-	private int idTicket;
+	private int idSesion;
 	private int numeroFila;
 	private int numeroAsiento;
 	public Entrada() {
@@ -12,22 +12,35 @@ public class Entrada {
 		this.numeroFila = numeroFila;
 		this.numeroAsiento = numeroAsiento;
 	}
-	public Entrada(int idTicket, int numeroFila, int numeroAsiento) {
+	public Entrada(int idSesion, int numeroFila, int numeroAsiento) {
 		super();
-		this.idTicket = idTicket;
+		this.idSesion = idSesion;
 		this.numeroFila = numeroFila;
 		this.numeroAsiento = numeroAsiento;
 	}
 	@Override
 	public String toString() {
-		return "Entrada [idTicket=" + idTicket + ", numeroFila=" + numeroFila + ", numeroAsiento=" + numeroAsiento
-				+ "]";
+		String cadena= "----------------------------------------------------\n";
+		cadena+=textoFormateado("IdTicket: "+getNumeroFila()+""+getNumeroAsiento()+""+getIdSesion(),50);
+		cadena+=textoFormateado("Fila: "+getNumeroFila(),50);
+		cadena+=textoFormateado("Asiento: "+getNumeroAsiento(),50);
+		return cadena;		
+				
 	}
-	public int getIdTicket() {
-		return idTicket;
+
+	public String textoFormateado(String texto, int longitud) {
+		String cadena= "|"+texto;
+		for(int i=0;i<longitud-texto.length();i++) {
+			cadena+=" ";
+		}
+		cadena+="|\n";
+		return cadena;
 	}
-	public void setIdTicket(int idTicket) {
-		this.idTicket = idTicket;
+	public int getIdSesion() {
+		return idSesion;
+	}
+	public void setIdSesion(int idTicket) {
+		this.idSesion = idTicket;
 	}
 	public int getNumeroFila() {
 		return numeroFila;

@@ -51,13 +51,16 @@ public class Sesion {
 
 	@Override
 	public String toString() {
-		String cadena= "--------------------------------\n";
-		cadena+=textoFormateado("|Id de Sesion: "+id+"|",30);
-		cadena+=textoFormateado("|Fecha y Hora: "+fechaHora+"|",30);
-		cadena+=textoFormateado("|Pelicula emitida: "+pelicula+"|",30);
-		cadena+=textoFormateado("|Sala: "+ sala+"|",30);
-		cadena+=textoFormateado("|Entrada: "+entradas+"|", 30);
-		cadena+="--------------------------------";
+		String cadena= "------------------------------------------\n";
+		cadena+=textoFormateado("Id de Sesion: "+getId(),40);
+		cadena+=textoFormateado("Fecha y Hora: "+fechaHora,40);
+		cadena+=textoFormateado("Pelicula emitida: "+pelicula.getTitulo(),40);
+		cadena+=textoFormateado("Duracion: "+pelicula.getDuracion(),40);
+		cadena+=textoFormateado("Sinopsis: "+pelicula.getSinopsis(),40);
+		cadena+=textoFormateado("Fecha Estresno: "+pelicula.getFechaEstreno(),40);
+		cadena+=textoFormateado("Entradas Disponibles: "+entradaDisponible(),40);
+		cadena+=textoFormateado("Sala: "+ sala.getId(),40);
+		cadena+="------------------------------------------";
 		return cadena;		
 	}
 	public String textoFormateado(String texto, int longitud) {
@@ -68,8 +71,6 @@ public class Sesion {
 		cadena+="|\n";
 		return cadena;
 	}
-
-
 	public int getId() {
 		return id;
 	}
@@ -109,6 +110,8 @@ public class Sesion {
 	public void setEntradas(List<Entrada> entradas) {
 		this.entradas = entradas;
 	}
-	
+	public int entradaDisponible() {
+		return (sala.getFilas()*sala.getAsientos())-entradas.size();
+	}
 
 }

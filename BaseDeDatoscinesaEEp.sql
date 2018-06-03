@@ -22,10 +22,10 @@ create table sesiones(
     constraint fk_sesiones_peliculas_titulo foreign key (titulo) references peliculas(titulo) on delete cascade on update cascade
     );
 create table entradas(
-idticket int(5) primary key auto_increment,
     numeroFila int(2),
     numeroAsiento int(3),
     idSesion int(5),
+    constraint pk_entrada primary key (numeroFila,numeroAsiento,idSesion),
     constraint fk_entradas_sesiones foreign key (idSesion) references sesiones (id) on delete restrict on update cascade
 );
 insert into salas values (null,10, 14);
@@ -60,6 +60,6 @@ insert into sesiones values(null,'2018-05-23 23:00:00', "Víctor el poder de la 
 
 
 
-insert into entradas values(null,1,1,1);
-insert into entradas values(null,1,2,1);
-insert into entradas values(null,2,1,1);
+insert into entradas values(1,1,1);
+insert into entradas values(1,2,1);
+insert into entradas values(2,1,1);

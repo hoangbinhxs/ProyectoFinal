@@ -4,16 +4,20 @@ import java.util.List;
 
 import dao.EntradaDAO;
 import dto.Entrada;
-import dto.Sesion;
 
 public class GestionEntradas {
 	EntradaDAO entradaDao;
-
-	public void guardarEntrada(List<Entrada> entradas, Sesion sesion) {
-		entradaDao.guardarEntrada(entradas, sesion);
+	public GestionEntradas() {
+		entradaDao=new EntradaDAO();
+	}
+	public void guardarEntrada(List<Entrada> entradas) {
+		entradaDao.guardarEntrada(entradas);
 	}
 
-	public boolean comprobarEntrada(Entrada entrada, Sesion sesion) {
-		return entradaDao.comprobarEntrada(entrada, sesion);
+	public boolean comprobarEntrada(Entrada entrada) {
+		return entradaDao.comprobarEntrada(entrada);
+	}
+	public void cerrar() {
+		entradaDao.cerrar();
 	}
 }
